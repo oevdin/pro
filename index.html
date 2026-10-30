@@ -20,8 +20,16 @@ main{position:relative;max-width:440px;width:100%}
 .logo{font-weight:800;font-size:40px;letter-spacing:.5px;display:flex;align-items:baseline;justify-content:center}
 .logo .ar{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:52px;margin-right:1px}
 .scene{display:block;width:100%;height:auto;margin-top:14px;border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#0C4E3B 0%,#11674D 62%,#11674D 100%);box-shadow:0 20px 50px rgba(0,0,0,.28)}
-h1{font-size:30px;font-weight:800;line-height:1.2;margin-top:22px;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.9,.3,1.2)}
-h1.on{opacity:1;transform:none}
+h1{font-size:30px;font-weight:800;line-height:1.2;margin-top:22px;animation:rise .9s cubic-bezier(.2,.9,.3,1.2) both .2s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.load{margin:16px auto 0;max-width:340px}
+.load-top{display:flex;justify-content:space-between;font-size:13px;color:#CFEBDF;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.load-top span:first-child::after{content:"";display:inline-block;width:1.2em;text-align:left;animation:dots 1.5s steps(4,end) infinite}
+@keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.track{position:relative;height:12px;border-radius:6px;background:rgba(255,255,255,.14);overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+.fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:6px;background:linear-gradient(90deg,#9FE3C6,#F2D27A);box-shadow:0 0 14px rgba(242,210,122,.55)}
+.fill::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.6) 50%,transparent 70%);background-size:200% 100%;animation:shine 1.6s linear infinite}
+@keyframes shine{from{background-position:150% 0}to{background-position:-50% 0}}
 .pt{margin-top:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:20px 18px 14px;text-align:left}
 .pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .pt-head h2{font-size:18px;font-weight:800}
@@ -38,7 +46,7 @@ h1.on{opacity:1;transform:none}
 .pt-row span:last-child{font-variant-numeric:tabular-nums}
 .pt-note{font-size:12px;color:#A9D4C2;margin-top:10px;line-height:1.45}
 
-@media (prefers-reduced-motion:reduce){h1{transition:none}}
+@media (prefers-reduced-motion:reduce){h1,.fill::after,.load-top span:first-child::after{animation:none}}
 </style>
 </head>
 <body>
@@ -135,6 +143,7 @@ h1.on{opacity:1;transform:none}
   </svg>
 
   <h1 id="title">Мы скоро вернёмся</h1>
+  <div class="load" role="progressbar" aria-label="Загрузка" aria-valuemin="0" aria-valuemax="100" id="load"><div class="load-top"><span>Загрузка</span><span id="pct">0%</span></div><div class="track"><div class="fill" id="fill"></div></div></div>
 
   <section class="pt" aria-labelledby="pt-title">
     <div class="pt-head"><h2 id="pt-title">Время намаза · Ош</h2><span id="pt-date"></span></div>
@@ -180,7 +189,7 @@ h1.on{opacity:1;transform:none}
     return d[3] + (d[4] - d[3]) * k;
   }
 
-  var title = $('title'), shown = false, t0 = performance.now();
+  var lastPct = -1, t0 = performance.now();
   function frame(now) {
     var t = reduce ? 30 : (now - t0) / 1000;
     // мерцание звёзд, качание крюка крана
@@ -215,7 +224,11 @@ h1.on{opacity:1;transform:none}
     $('sign').setAttribute('transform', 'translate(' + sx.toFixed(1) + ' 232) scale(' + Math.max(0.001, sc).toFixed(3) + ')');
     $('gear').setAttribute('transform', 'translate(-6 -80) rotate(' + (t * 40 % 360).toFixed(1) + ')');
     $('cones').setAttribute('opacity', (1 - grow * 0.0).toFixed(2));
-    if (!shown && t > 12.2) { shown = true; title.classList.add('on'); }
+    // загрузка: быстро до ~60%, медленно к 97%, дальше «дышит» у самого конца
+    var pr = t < 12 ? 62 * io(t / 12) : 62 + 35 * (1 - Math.exp(-(t - 12) / 25));
+    pr = Math.min(97, pr) + (t > 40 ? Math.sin(t * 0.8) * 0.6 : 0);
+    $('fill').style.width = pr.toFixed(1) + '%';
+    var pi = Math.floor(pr); if (pi !== lastPct) { lastPct = pi; $('pct').textContent = pi + '%'; $('load').setAttribute('aria-valuenow', pi); }
 
     // машины
     var anyDust = [];
