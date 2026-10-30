@@ -11,9 +11,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}
-html,body{height:100%}
+html{background:#0A5640}
+html,body{min-height:100%}
 body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#fff;background:#0A5640;
-  background:radial-gradient(120% 70% at 50% 0%,#14805F 0%,#0E6B4F 45%,#0A5640 100%);
+  background:radial-gradient(120% 70% at 50% 0%,#14805F 0%,#0E6B4F 45%,#0A5640 100%) no-repeat #0A5640;background-size:100% 1100px;
   min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px;text-align:center;overflow-x:hidden}
 .stars{position:fixed;inset:0;pointer-events:none}
 .stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.25;animation:tw 3s ease-in-out infinite}
@@ -34,6 +35,21 @@ p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
 .store b{font-size:16px}
 .soon{display:inline-block;margin-top:26px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#CFEBDF}
 .dua{font-family:'Amiri',serif;font-size:26px;margin-top:20px;color:#fff}
+.pt{margin-top:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:20px 18px 14px;text-align:left}
+.pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pt-head h2{font-size:18px;font-weight:800}
+.pt-head span{font-size:13px;color:#CFEBDF}
+.pt-next{margin:14px 0 10px;background:#fff;color:#0E6B4F;border-radius:16px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pt-next small{display:block;font-size:12px;color:#5E6B66;letter-spacing:.5px}
+.pt-next b{font-size:20px}
+.pt-cd{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.pt-row{display:flex;justify-content:space-between;padding:10px 4px;border-top:1px solid rgba(255,255,255,.12);font-size:16px}
+.pt-row:first-of-type{border-top:0}
+.pt-row.sun{color:#A9D4C2}
+.pt-row.now{color:#fff;font-weight:800}
+.pt-row.now span:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:4px;background:#9FE3C6;margin-right:8px;vertical-align:middle}
+.pt-row span:last-child{font-variant-numeric:tabular-nums}
+.pt-note{font-size:12px;color:#A9D4C2;margin-top:10px;line-height:1.45}
 @media (prefers-reduced-motion:reduce){.gear svg,.stars i{animation:none}}
 </style>
 </head>
@@ -57,6 +73,13 @@ p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
     <p>Kawkab тез орада кайтади — бизни App Store ва Google Play'да кутинг!</p>
   </div>
 
+  <section class="pt" aria-labelledby="pt-title">
+    <div class="pt-head"><h2 id="pt-title">Время намаза · Ош</h2><span id="pt-date"></span></div>
+    <div class="pt-next" role="status" aria-live="polite"><div><small>СЛЕДУЮЩИЙ НАМАЗ</small><b id="pt-next-name">—</b></div><div style="text-align:right"><small id="pt-next-at"></small><div class="pt-cd" id="pt-cd">--:--:--</div></div></div>
+    <div id="pt-list"></div>
+    <p class="pt-note">По расчёту Духовного управления мусульман Кыргызстана: Аср по ханафитскому мазхабу. Время местное (UTC+6). Время джамаата в мечетях может отличаться — уточняйте в своей мечети.</p>
+  </section>
+
   <div class="stores" aria-label="Скоро в магазинах приложений">
     <div class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E6B4F" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><span><small>Скоро в</small><b>App Store</b></span></div>
     <div class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E6B4F" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><span><small>Скоро в</small><b>Google Play</b></span></div>
@@ -66,6 +89,50 @@ p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
   <div class="soon">Иншааллах · до скорой встречи</div>
 </main>
 <script>
+// Время намаза для Оша (40.5283° с.ш., 72.7985° в.д., UTC+6).
+// Метод сверен с расписанием ДУМК: Фаджр 18°, Иша 16°, Аср — ханафитский (тень ×2).
+(function () {
+  var LAT = 40.5283, LNG = 72.7985, TZ = 6, FAJR = 18, ISHA = 16, ASR = 2;
+  var rad = function (d) { return d * Math.PI / 180; }, deg = function (r) { return r * 180 / Math.PI; };
+  var sin = function (d) { return Math.sin(rad(d)); }, cos = function (d) { return Math.cos(rad(d)); }, tan = function (d) { return Math.tan(rad(d)); };
+  var fix = function (a, b) { a = a - b * Math.floor(a / b); return a < 0 ? a + b : a; };
+  function julian(y, m, d) { if (m <= 2) { y -= 1; m += 12; } var A = Math.floor(y / 100), B = 2 - A + Math.floor(A / 4); return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5; }
+  function sun(jd) { var D = jd - 2451545, g = fix(357.529 + 0.98560028 * D, 360), q = fix(280.459 + 0.98564736 * D, 360), L = fix(q + 1.915 * sin(g) + 0.020 * sin(2 * g), 360), e = 23.439 - 0.00000036 * D, RA = deg(Math.atan2(cos(e) * sin(L), cos(L))) / 15; return { dec: deg(Math.asin(sin(e) * sin(L))), eq: q / 15 - fix(RA, 24) }; }
+  function times(y, mo, d) {
+    var jd = julian(y, mo, d) - LNG / 360;
+    var noon = function (t) { return fix(12 - sun(jd + t).eq, 24); };
+    var at = function (ang, t, ccw) { var s = sun(jd + t), T = deg(Math.acos((-sin(ang) - sin(s.dec) * sin(LAT)) / (cos(s.dec) * cos(LAT)))) / 15; return noon(t) + (ccw ? -T : T); };
+    var asr = function (t) { var s = sun(jd + t); return at(-deg(Math.atan(1 / (ASR + tan(Math.abs(LAT - s.dec))))), t); };
+    var r = { fajr: 5, sunrise: 6, dhuhr: 12, asr: 13, maghrib: 18, isha: 18 };
+    for (var i = 0; i < 2; i++) r = { fajr: at(FAJR, r.fajr / 24, true), sunrise: at(0.833, r.sunrise / 24, true), dhuhr: noon(r.dhuhr / 24), asr: asr(r.asr / 24), maghrib: at(0.833, r.maghrib / 24), isha: at(ISHA, r.isha / 24) };
+    r.dhuhr += 1 / 60;
+    var o = {}; for (var k in r) o[k] = Math.round(fix(r[k] + TZ - LNG / 15, 24) * 60); // минуты от полуночи
+    return o;
+  }
+  var NAMES = [["fajr", "Фаджр"], ["sunrise", "Восход"], ["dhuhr", "Зухр"], ["asr", "Аср"], ["maghrib", "Магриб"], ["isha", "Иша"]];
+  var hm = function (m) { return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"); };
+  function oshNow() { var n = new Date(Date.now() + TZ * 3600000); return { y: n.getUTCFullYear(), mo: n.getUTCMonth() + 1, d: n.getUTCDate(), wd: n.getUTCDay(), sec: n.getUTCHours() * 3600 + n.getUTCMinutes() * 60 + n.getUTCSeconds(), utc: n }; }
+  function draw() {
+    var n = oshNow(), t = times(n.y, n.mo, n.d), fri = n.wd === 5, nowMin = n.sec / 60;
+    var name = function (k, label) { return fri && k === "dhuhr" ? "Джума" : label; };
+    var next = null, cur = null;
+    NAMES.forEach(function (p) { if (p[0] === "sunrise") return; if (t[p[0]] <= nowMin) cur = p[0]; if (!next && t[p[0]] > nowMin) next = p; });
+    var nextAt, nextLabel;
+    if (next) { nextAt = t[next[0]] * 60; nextLabel = name(next[0], next[1]); }
+    else { var tm = new Date(n.utc.getTime() + 86400000), t2 = times(tm.getUTCFullYear(), tm.getUTCMonth() + 1, tm.getUTCDate()); nextAt = 86400 + t2.fajr * 60; nextLabel = "Фаджр"; }
+    var left = Math.max(0, nextAt - n.sec);
+    document.getElementById("pt-next-name").textContent = nextLabel;
+    document.getElementById("pt-next-at").textContent = "в " + hm(Math.round(nextAt / 60) % 1440);
+    document.getElementById("pt-cd").textContent = [Math.floor(left / 3600), Math.floor(left / 60) % 60, left % 60].map(function (x) { return String(x).padStart(2, "0"); }).join(":");
+    document.getElementById("pt-list").innerHTML = NAMES.map(function (p) {
+      var cls = p[0] === "sunrise" ? "sun" : (p[0] === cur ? "now" : "");
+      return '<div class="pt-row ' + cls + '"><span>' + name(p[0], p[1]) + '</span><span>' + hm(t[p[0]]) + '</span></div>';
+    }).join("");
+    document.getElementById("pt-date").textContent = n.utc.toLocaleDateString("ru-RU", { timeZone: "UTC", weekday: "long", day: "numeric", month: "long" });
+  }
+  draw(); setInterval(draw, 1000);
+})();
+
 // Убираем со всех телефонов старую версию: кэш, service worker и локальные данные (включая ключ GitHub).
 try { Object.keys(localStorage).filter(k => k.startsWith('kawkab')).forEach(k => localStorage.removeItem(k)); } catch (e) {}
 if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
