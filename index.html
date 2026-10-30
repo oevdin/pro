@@ -5,36 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0E6B4F">
 <meta name="robots" content="noindex">
-<title>Kawkab — технические работы</title>
+<title>Kawkab — скоро вернёмся</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0}
 html{background:#0A5640}
 html,body{min-height:100%}
-body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#fff;background:#0A5640;
+body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#fff;
   background:radial-gradient(120% 70% at 50% 0%,#14805F 0%,#0E6B4F 45%,#0A5640 100%) no-repeat #0A5640;background-size:100% 1100px;
-  min-height:100vh;display:flex;align-items:center;justify-content:center;padding:32px 20px;text-align:center;overflow-x:hidden}
-.stars{position:fixed;inset:0;pointer-events:none}
-.stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.25;animation:tw 3s ease-in-out infinite}
-@keyframes tw{50%{opacity:.7}}
-main{position:relative;max-width:420px;width:100%}
-.logo{font-weight:800;font-size:64px;letter-spacing:1px;display:flex;align-items:baseline;justify-content:center}
-.logo .ar{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:84px;margin-right:2px}
-.gear{width:76px;height:76px;margin:28px auto 22px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
-.gear svg{animation:spin 6s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-h1{font-size:26px;font-weight:800;line-height:1.25}
-p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
-.lang{margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18)}
-.lang p{font-size:15px;color:#CFEBDF;margin-top:6px}
-.stores{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px}
-.store{display:flex;align-items:center;gap:10px;background:#fff;color:#0E6B4F;border-radius:14px;padding:10px 16px;min-width:160px;text-align:left}
-.store small{display:block;font-size:11px;color:#5E6B66}
-.store b{font-size:16px}
-.soon{display:inline-block;margin-top:26px;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:#CFEBDF}
-.dua{font-family:'Amiri',serif;font-size:26px;margin-top:20px;color:#fff}
+  min-height:100vh;display:flex;justify-content:center;padding:28px 16px 36px;text-align:center;overflow-x:hidden}
+main{position:relative;max-width:440px;width:100%}
+.logo{font-weight:800;font-size:40px;letter-spacing:.5px;display:flex;align-items:baseline;justify-content:center}
+.logo .ar{font-family:'Amiri','Noto Naskh Arabic',serif;font-size:52px;margin-right:1px}
+.scene{display:block;width:100%;height:auto;margin-top:14px;border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#0C4E3B 0%,#11674D 62%,#11674D 100%);box-shadow:0 20px 50px rgba(0,0,0,.28)}
+h1{font-size:30px;font-weight:800;line-height:1.2;margin-top:22px;opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.9,.3,1.2)}
+h1.on{opacity:1;transform:none}
 .pt{margin-top:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:20px 18px 14px;text-align:left}
 .pt-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .pt-head h2{font-size:18px;font-weight:800}
@@ -50,28 +37,104 @@ p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
 .pt-row.now span:first-child::before{content:"";display:inline-block;width:8px;height:8px;border-radius:4px;background:#9FE3C6;margin-right:8px;vertical-align:middle}
 .pt-row span:last-child{font-variant-numeric:tabular-nums}
 .pt-note{font-size:12px;color:#A9D4C2;margin-top:10px;line-height:1.45}
-@media (prefers-reduced-motion:reduce){.gear svg,.stars i{animation:none}}
+
+@media (prefers-reduced-motion:reduce){h1{transition:none}}
 </style>
 </head>
 <body>
-<div class="stars" aria-hidden="true">
-  <i style="left:8%;top:12%"></i><i style="left:22%;top:70%;animation-delay:.6s"></i><i style="left:36%;top:28%;animation-delay:1.2s"></i>
-  <i style="left:58%;top:8%;animation-delay:.3s"></i><i style="left:74%;top:52%;animation-delay:1.8s"></i><i style="left:90%;top:22%;animation-delay:.9s"></i>
-  <i style="left:84%;top:84%;animation-delay:1.5s"></i><i style="left:12%;top:90%;animation-delay:2.1s"></i><i style="left:48%;top:94%;animation-delay:.4s"></i>
-</div>
 <main>
   <div class="logo" aria-label="Kawkab"><span class="ar">ك</span>awkab</div>
-  <div class="gear" aria-hidden="true">
-    <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
-  </div>
-  <h1>Ведутся технические работы</h1>
-  <p>Мы делаем Kawkab надёжнее и безопаснее. Все данные сохранены.</p>
-  <p><b>Kawkab скоро вернётся — ждите нас в App Store и Google Play!</b></p>
 
-  <div class="lang">
-    <p><b>Техник ишлар олиб борилмокда.</b></p>
-    <p>Kawkab тез орада кайтади — бизни App Store ва Google Play'да кутинг!</p>
-  </div>
+  <svg class="scene" id="scene" viewBox="0 0 400 320" role="img" aria-label="Рабочий ставит знак ремонта, мимо проезжают строительные машины">
+    <defs>
+      <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#26332E"/><stop offset="1" stop-color="#1A2420"/></linearGradient>
+      <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CFF3FF"/><stop offset="1" stop-color="#7FB8CC"/></linearGradient>
+      <clipPath id="drumClip"><ellipse cx="0" cy="0" rx="34" ry="19"/></clipPath>
+      <g id="wheel"><circle r="9" fill="#1B1F1D"/><circle r="4.5" fill="#9AA5A0"/><path d="M-4.5 0H4.5M0 -4.5V4.5" stroke="#5B6662" stroke-width="1.6"/></g>
+    </defs>
+
+    <!-- небо: звёзды, полумесяц, силуэт города с мечетью, кран -->
+    <g id="stars" fill="#fff"></g>
+    <g transform="translate(338 46)"><circle r="16" fill="#F7E7B4"/><circle cx="7" cy="-4" r="14" fill="#0C4E3B"/></g>
+    <g fill="#0A4535" opacity=".9">
+      <rect x="0" y="176" width="34" height="56"/><rect x="38" y="160" width="26" height="72"/><rect x="70" y="186" width="30" height="46"/>
+      <path d="M150 232V196a26 26 0 0 1 52 0v36z"/><rect x="146" y="196" width="60" height="36"/>
+      <rect x="214" y="140" width="9" height="92"/><path d="M212 142h13l-6.5-12z"/><circle cx="218.5" cy="128" r="2.5"/>
+      <rect x="250" y="170" width="34" height="62"/><rect x="290" y="186" width="40" height="46"/><rect x="336" y="166" width="30" height="66"/><rect x="370" y="182" width="30" height="50"/>
+    </g>
+    <!-- кран -->
+    <g id="crane" stroke="#E2A42B" stroke-width="3" fill="none" opacity=".9">
+      <path d="M300 232V88M292 232V88M292 96l8-8M292 112l8-8M292 128l8-8M292 144l8-8M292 160l8-8M292 176l8-8M292 192l8-8M292 208l8-8M292 224l8-8"/>
+      <path d="M248 88H392M296 88l-10-14h20z" stroke-width="3.5"/>
+      <g id="hook"><path d="M356 88v40" stroke-width="1.5"/><path d="M352 128h8l-4 7z" fill="#E2A42B" stroke="none"/></g>
+    </g>
+
+    <!-- тротуар и дорога -->
+    <rect x="0" y="232" width="400" height="12" fill="#2C8566"/>
+    <rect x="0" y="244" width="400" height="76" fill="url(#road)"/>
+    <g id="dashes" fill="#E8E2C8" opacity=".7"></g>
+
+    <!-- знак техработ (вырастает) -->
+    <g id="sign" transform="translate(200 232) scale(0)">
+      <g id="cones">
+        <g transform="translate(-30 0)"><path d="M-7 0L-2 -20H2L7 0z" fill="#F28C28"/><rect x="-9" y="-2" width="18" height="3" rx="1" fill="#1B1F1D"/><path d="M-5 -8H5L4 -12H-4z" fill="#fff"/></g>
+        <g transform="translate(30 0)"><path d="M-7 0L-2 -20H2L7 0z" fill="#F28C28"/><rect x="-9" y="-2" width="18" height="3" rx="1" fill="#1B1F1D"/><path d="M-5 -8H5L4 -12H-4z" fill="#fff"/></g>
+      </g>
+      <rect x="-2" y="-52" width="4" height="52" fill="#C9D2CE"/>
+      <g id="panel">
+        <rect x="-25" y="-100" width="50" height="50" rx="9" fill="#F2B200" stroke="#1B1F1D" stroke-width="3"/>
+        <g id="gear" transform="translate(-6 -80)">
+          <path fill="#1B1F1D" d="M-3 -13h6l1 4 4 2 4-2 4 4-2 4 2 4 4 1v6l-4 1-2 4 2 4-4 4-4-2-4 2-1 4h-6l-1-4-4-2-4 2-4-4 2-4-2-4-4-1v-6l4-1 2-4-2-4 4-4 4 2 4-2z" transform="scale(.62)"/>
+          <circle r="3.4" fill="#F2B200"/>
+        </g>
+        <path transform="translate(0 -72) scale(.95)" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" fill="#1B1F1D" stroke="#1B1F1D" stroke-width="1.2" stroke-linejoin="round"/>
+      </g>
+    </g>
+
+    <!-- рабочий (без лица) -->
+    <g id="worker" transform="translate(-40 232)">
+      <g id="wBody">
+        <g id="legB" transform="translate(-3 -24)"><rect x="-3" y="0" width="6" height="22" rx="3" fill="#24486B"/><rect x="-4" y="19" width="10" height="5" rx="2" fill="#1B1F1D"/></g>
+        <g id="armB" transform="translate(-4 -44)"><rect x="-2.5" y="0" width="5" height="18" rx="2.5" fill="#F28C28"/><circle cx="0" cy="19" r="3" fill="#D9A27A"/></g>
+        <rect x="-9" y="-48" width="18" height="26" rx="6" fill="#F28C28"/>
+        <rect x="-9" y="-38" width="18" height="3.5" fill="#F7E7B4"/><rect x="-9" y="-30" width="18" height="3.5" fill="#F7E7B4"/>
+        <g id="legF" transform="translate(3 -24)"><rect x="-3" y="0" width="6" height="22" rx="3" fill="#2D5A85"/><rect x="-4" y="19" width="10" height="5" rx="2" fill="#1B1F1D"/></g>
+        <circle cx="0" cy="-56" r="8" fill="#D9A27A"/>
+        <path d="M-10 -57a10 10 0 0 1 20 0z" fill="#F2B200"/><rect x="-12" y="-58" width="24" height="3" rx="1.5" fill="#E2A000"/>
+        <g id="armF" transform="translate(4 -44)"><rect x="-2.5" y="0" width="5" height="18" rx="2.5" fill="#FF9B3A"/><circle cx="0" cy="19" r="3" fill="#D9A27A"/>
+          <g id="carry" transform="translate(2 18)"><rect x="-1" y="-14" width="2.5" height="14" fill="#C9D2CE"/><rect x="-7" y="-26" width="14" height="13" rx="3" fill="#F2B200" stroke="#1B1F1D" stroke-width="1.5"/></g>
+        </g>
+      </g>
+    </g>
+
+    <!-- машины: самосвал, бетономешалка, фура -->
+    <g id="dump" transform="translate(-200 276)">
+      <g id="dumpBox"><path d="M2 -46H62L66 -16H0z" fill="#E46F1F"/><path d="M6 -46Q32 -60 58 -46z" fill="#8C6A4A"/><path d="M8 -40H58M6 -32H60M4 -24H62" stroke="#C85A12" stroke-width="2"/></g>
+      <rect x="0" y="-16" width="108" height="7" fill="#2A2F2D"/>
+      <path d="M72 -16V-46H96L108 -30V-16z" fill="#F28C28"/><path d="M78 -42H94L103 -30H78z" fill="url(#glass)"/><rect x="104" y="-22" width="5" height="4" fill="#F7E7B4"/>
+      <use href="#wheel" class="wh" x="18" y="-6"/><use href="#wheel" class="wh" x="40" y="-6"/><use href="#wheel" class="wh" x="90" y="-6"/>
+    </g>
+    <g id="mixer" transform="translate(600 300) scale(-1 1)">
+      <g transform="translate(38 -34) rotate(-10)">
+        <ellipse rx="34" ry="19" fill="#E9EEEC"/>
+        <g clip-path="url(#drumClip)"><g id="stripes" stroke="#2D6CDF" stroke-width="5"></g></g>
+        <ellipse rx="34" ry="19" fill="none" stroke="#9AA5A0" stroke-width="2"/>
+      </g>
+      <rect x="0" y="-16" width="110" height="7" fill="#2A2F2D"/>
+      <path d="M76 -16V-46H98L110 -30V-16z" fill="#2D6CDF"/><path d="M82 -42H96L105 -30H82z" fill="url(#glass)"/><rect x="106" y="-22" width="5" height="4" fill="#F7E7B4"/>
+      <use href="#wheel" class="wh" x="16" y="-6"/><use href="#wheel" class="wh" x="38" y="-6"/><use href="#wheel" class="wh" x="94" y="-6"/>
+    </g>
+    <g id="truck" transform="translate(-300 276)">
+      <rect x="0" y="-62" width="148" height="46" rx="4" fill="#F1F4F2"/><rect x="0" y="-36" width="148" height="7" fill="#0E6B4F"/>
+      <g fill="#0E6B4F" opacity=".9"><path d="M60 -50h28l-4 6H64z"/></g>
+      <rect x="0" y="-16" width="192" height="7" fill="#2A2F2D"/>
+      <path d="M154 -16V-54H178L192 -34V-16z" fill="#B8323A"/><path d="M160 -50H176L186 -34H160z" fill="url(#glass)"/><rect x="188" y="-22" width="5" height="4" fill="#F7E7B4"/>
+      <use href="#wheel" class="wh" x="14" y="-6"/><use href="#wheel" class="wh" x="34" y="-6"/><use href="#wheel" class="wh" x="122" y="-6"/><use href="#wheel" class="wh" x="170" y="-6"/>
+    </g>
+    <g id="dust" fill="#C9D2CE"></g>
+  </svg>
+
+  <h1 id="title">Мы скоро вернёмся</h1>
 
   <section class="pt" aria-labelledby="pt-title">
     <div class="pt-head"><h2 id="pt-title">Время намаза · Ош</h2><span id="pt-date"></span></div>
@@ -79,15 +142,110 @@ p{font-size:16px;line-height:1.55;color:#DDF1E8;margin-top:12px}
     <div id="pt-list"></div>
     <p class="pt-note">По расчёту Духовного управления мусульман Кыргызстана: Аср по ханафитскому мазхабу. Время местное (UTC+6). Время джамаата в мечетях может отличаться — уточняйте в своей мечети.</p>
   </section>
-
-  <div class="stores" aria-label="Скоро в магазинах приложений">
-    <div class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E6B4F" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><span><small>Скоро в</small><b>App Store</b></span></div>
-    <div class="store"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0E6B4F" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg><span><small>Скоро в</small><b>Google Play</b></span></div>
-  </div>
-
-  <div class="dua" lang="ar">إِنْ شَاءَ اللَّهُ</div>
-  <div class="soon">Иншааллах · до скорой встречи</div>
 </main>
+<script>
+// Анимация сцены. Всё считается от времени t, чтобы движения были плавными на любом телефоне.
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var NS = 'http://www.w3.org/2000/svg';
+  var cl = function (x) { return Math.max(0, Math.min(1, x)); };
+  var io = function (x) { x = cl(x); return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; };
+  var back = function (x) { x = cl(x); var c = 1.8; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+  var seg = function (t, a, b) { return cl((t - a) / (b - a)); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // звёзды, разметка, полосы на барабане
+  var st = $('stars'), stars = [];
+  for (var i = 0; i < 26; i++) { var c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', (i * 61) % 400); c.setAttribute('cy', 10 + (i * 37) % 140); c.setAttribute('r', i % 3 ? 1 : 1.5); st.appendChild(c); stars.push(c); }
+  var ds = $('dashes'), dashes = [];
+  for (i = 0; i < 12; i++) { var r = document.createElementNS(NS, 'rect'); r.setAttribute('y', 281); r.setAttribute('width', 18); r.setAttribute('height', 3); r.setAttribute('rx', 1.5); ds.appendChild(r); dashes.push(r); }
+  var sp = $('stripes');
+  for (i = -6; i < 7; i++) { var l = document.createElementNS(NS, 'path'); l.setAttribute('d', 'M' + (i * 12) + ' -24 l14 48'); sp.appendChild(l); }
+  var dust = $('dust'), puffs = [];
+  for (i = 0; i < 12; i++) { var p = document.createElementNS(NS, 'circle'); dust.appendChild(p); puffs.push(p); }
+
+  // проезды машин: [id, начало, длительность, откуда, куда, полоса y, направление]
+  var DRIVES = [
+    ['dump', 2.4, 3.2, -130, 430, 276, 1],
+    ['mixer', 3.6, 3.4, 530, -140, 304, -1],
+    ['truck', 5.2, 3.6, -210, 430, 276, 1]
+  ];
+  // после вступления машины продолжают изредка проезжать
+  var LOOP = 22, LOOP_START = 12;
+  function drivePos(d, t) {
+    var tt = t;
+    if (t > LOOP_START) { tt = ((t - LOOP_START) % LOOP) + 0.4; }
+    var k = (tt - d[1]) / d[2];
+    if (k < 0 || k > 1) return null;
+    return d[3] + (d[4] - d[3]) * k;
+  }
+
+  var title = $('title'), shown = false, t0 = performance.now();
+  function frame(now) {
+    var t = reduce ? 30 : (now - t0) / 1000;
+    // мерцание звёзд, качание крюка крана
+    stars.forEach(function (s, i) { s.setAttribute('opacity', (0.25 + 0.5 * (0.5 + 0.5 * Math.sin(t * 1.3 + i))).toFixed(2)); });
+    $('hook').setAttribute('transform', 'rotate(' + (Math.sin(t * 1.1) * 6).toFixed(2) + ' 356 88)');
+
+    // рабочий: заходит, ждёт машины, ставит знак, отходит и машет
+    var x, walking = false, facing = 1;
+    if (t < 2.2) { x = -40 + 150 * io(t / 2.2); walking = true; }
+    else if (t < 8.8) { x = 110; }
+    else if (t < 9.8) { x = 110 + 62 * io(seg(t, 8.8, 9.8)); walking = true; }
+    else if (t < 10.4) { x = 172; }
+    else if (t < 11.4) { x = 172 - 60 * io(seg(t, 10.4, 11.4)); walking = true; facing = -1; }
+    else { x = 112; }
+    var phase = walking ? Math.sin(t * 11) : 0;
+    $('worker').setAttribute('transform', 'translate(' + x.toFixed(1) + ' 232) scale(' + facing + ' 1)');
+    $('wBody').setAttribute('transform', 'translate(0 ' + (walking ? -Math.abs(Math.sin(t * 11)) * 1.6 : 0).toFixed(2) + ')');
+    $('legF').setAttribute('transform', 'translate(3 -24) rotate(' + (phase * 28).toFixed(1) + ')');
+    $('legB').setAttribute('transform', 'translate(-3 -24) rotate(' + (-phase * 28).toFixed(1) + ')');
+    $('armB').setAttribute('transform', 'translate(-4 -44) rotate(' + (phase * 22).toFixed(1) + ')');
+    var wave = 0, armF;
+    if (t > 11.6) { wave = 1; }
+    if (t < 9.8) armF = -10 - phase * 10;                       // несёт знак
+    else if (t < 10.4) armF = -10 - 60 * io(seg(t, 9.8, 10.2));   // ставит
+    else armF = wave ? -150 + Math.sin(t * 7) * 20 : 0;         // машет
+    $('armF').setAttribute('transform', 'translate(4 -44) rotate(' + armF.toFixed(1) + ')');
+    $('carry').setAttribute('opacity', t < 10.1 ? 1 : 0);
+
+    // знак: появляется, затем вырастает
+    var pop = back(seg(t, 10.1, 10.6)), grow = io(seg(t, 11.2, 12.4));
+    var sc = pop * (1 + 1.15 * grow), sx = 200 + 60 * grow;
+    $('sign').setAttribute('transform', 'translate(' + sx.toFixed(1) + ' 232) scale(' + Math.max(0.001, sc).toFixed(3) + ')');
+    $('gear').setAttribute('transform', 'translate(-6 -80) rotate(' + (t * 40 % 360).toFixed(1) + ')');
+    $('cones').setAttribute('opacity', (1 - grow * 0.0).toFixed(2));
+    if (!shown && t > 12.2) { shown = true; title.classList.add('on'); }
+
+    // машины
+    var anyDust = [];
+    DRIVES.forEach(function (d) {
+      var px = drivePos(d, t), el = $(d[0]);
+      if (px === null) { el.setAttribute('opacity', 0); return; }
+      el.setAttribute('opacity', 1);
+      var bob = Math.sin(t * 18 + px * .05) * 0.6;
+      el.setAttribute('transform', 'translate(' + px.toFixed(1) + ' ' + (d[5] + bob).toFixed(2) + ') scale(' + d[6] + ' 1)');
+      var rot = (px * d[6] / 9 * 57.3) % 360;
+      el.querySelectorAll('.wh').forEach(function (w) { w.setAttribute('transform', 'rotate(' + rot.toFixed(1) + ' ' + w.getAttribute('x') + ' ' + w.getAttribute('y') + ')'); });
+      anyDust.push([px, d[5], d[6]]);
+    });
+    $('stripes').setAttribute('transform', 'translate(' + ((t * 30) % 12).toFixed(2) + ' 0)');
+    // разметка дороги слегка «едет», когда есть машины
+    dashes.forEach(function (r, i) { r.setAttribute('x', ((i * 36) % 432 - 16).toFixed(1)); });
+    // пыль за колёсами
+    puffs.forEach(function (p, i) {
+      var src = anyDust[i % Math.max(1, anyDust.length)];
+      if (!src) { p.setAttribute('opacity', 0); return; }
+      var k = ((t * 1.6 + i / puffs.length) % 1);
+      var bx = src[2] > 0 ? src[0] - 4 - k * 26 : src[0] + 4 + k * 26;
+      p.setAttribute('cx', bx.toFixed(1)); p.setAttribute('cy', (src[1] - 4 - k * 10).toFixed(1));
+      p.setAttribute('r', (2 + k * 6).toFixed(1)); p.setAttribute('opacity', (0.35 * (1 - k)).toFixed(2));
+    });
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
 <script>
 // Время намаза для Оша (40.5283° с.ш., 72.7985° в.д., UTC+6).
 // Метод сверен с расписанием ДУМК: Фаджр 18°, Иша 16°, Аср — ханафитский (тень ×2).
@@ -138,5 +296,6 @@ try { Object.keys(localStorage).filter(k => k.startsWith('kawkab')).forEach(k =>
 if ('serviceWorker' in navigator) navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
 if (window.caches) caches.keys().then(ks => ks.forEach(k => caches.delete(k))).catch(() => {});
 </script>
+
 </body>
 </html>
